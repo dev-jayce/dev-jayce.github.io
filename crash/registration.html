@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            width: {
+              container: "620px",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+              "gradient-conic":
+                "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+            },
+            backgroundColor: {
+              red: "red",
+              "button-grey": "#5e5e5e",
+              "dark-grey": "#181818",
+              "dark-grey2": "#121212",
+            },
+            textColor: {
+              grey: "#4d4d4d",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      :root {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <title>CRASH CONFERENCE</title>
+  </head>
+  <body class="bg-[#0a0f12]">
+    <main>
+      <section class="flex w-full justify-center items-center">
+        <section class="w-full sm:container">
+          <section class="p-12">
+            <h1 class="text-4xl text-white font-bold text-center">
+              WELCOME TO CRASH CONFERENCE!
+            </h1>
+
+            <div class="pt-14 flex justify-center items-center">
+              <div class="w-[150px] h-[150px] sm:w-[300px] sm:h-[300px]">
+                <img
+                  id="qr_link"
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://dev-jayce.github.io/crash/registration.html?registrationId=&username=&sessionId="
+                  class="w-full"
+                  alt="registration-qr-code"
+                />
+              </div>
+            </div>
+
+            <section
+              class="text-2xl text-white font-bold text-center p-3 sm:p-12 flex justify-center items-center"
+            >
+              <div class="w-full sm:w-2/3">
+                <div class="p-6 text-left">
+                  registrationId: <span id="registrationId">1</span>
+                </div>
+                <div class="p-6 text-left">
+                  sessionId: <span id="sessionId">1</span>
+                </div>
+                <div class="p-6 text-left">
+                  username: <span id="username">1</span>
+                </div>
+              </div>
+            </section>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+      var registrationId = urlParams.get("registrationId");
+      var sessionId = urlParams.get("sessionId");
+      var username = urlParams.get("username");
+      var baseLink = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://dev-jayce.github.io/crash/registration.html?registrationId=${registrationId}&username=${username}&sessionId=${sessionId}`;
+
+      document.getElementById("registrationId").textContent = registrationId;
+      document.getElementById("sessionId").textContent = sessionId;
+      document.getElementById("username").textContent = username;
+      document.getElementById("qr_link").src = baseLink;
+    </script>
+  </body>
+</html>
