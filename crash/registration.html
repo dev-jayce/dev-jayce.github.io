@@ -86,10 +86,9 @@
     </main>
     <script>
       var urlParams = new URLSearchParams(window.location.search);
-      var registrationId = urlParams.get("registrationId");
-      var sessionId = urlParams.get("sessionId");
-      var username = urlParams.get("username");
-      var baseLink = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://dev-jayce.github.io/crash/registration.html?registrationId=${registrationId}&username=${username}&sessionId=${sessionId}`;
+      var registration = urlParams.get("registration");
+      var [registrationId, username, sessionId] = registration.split(",");
+      var baseLink = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://dev-jayce.github.io/crash/registration.html?registration=${registrationId},${username},${sessionId}`;
 
       document.getElementById("registrationId").textContent = registrationId;
       document.getElementById("sessionId").textContent = sessionId;
